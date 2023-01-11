@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c78fddc4bcc556645b7e9fa55fa7d44c, type: 3}
+  m_Name: Hand
+  m_EditorClassIdentifier: 
+  dialogueList:
+  - "\u6C38\u8FDC\u65E0\u6CD5\u89E6\u78B0\u5230\u7684\u771F\u5B9E"

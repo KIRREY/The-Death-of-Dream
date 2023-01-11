@@ -1,0 +1,4 @@
+repository "text999@moyuing123123@cloud.cn"
+  path "/"
+    br "/main"
+    co "/main"
