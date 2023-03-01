@@ -14,6 +14,7 @@ public class Nightware : Flag
             case NightwareLevel.Lv2:StartCoroutine("Lv2");break;
             case NightwareLevel.Lv3:Lv3();break;
         }
+        this.gameObject.SetActive(false);
     }
 
     public float Lv1Up;

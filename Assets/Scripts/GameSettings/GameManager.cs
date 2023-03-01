@@ -64,7 +64,7 @@ public class GameManager : Singleton<GameManager>,ISaveable
         {
             text.text = ((int)time).ToString();
             time--;
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSecondsRealtime(1);
         }
         timer.SetActive(false);
         AlienationManager.Instance.ifAlienation = false;

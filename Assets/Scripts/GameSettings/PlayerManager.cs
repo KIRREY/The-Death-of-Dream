@@ -7,6 +7,7 @@ public class PlayerManager : Singleton<PlayerManager>,ISaveable
     public bool flashlightActive;
     public float originalspeed;
     public bool ifBrain;
+    public bool ifChasing;
     private void OnEnable()
     {
         EventHandler.BeforeSceneChangeEvent += OnBeforeSceneChangeEvent;
@@ -27,6 +28,7 @@ public class PlayerManager : Singleton<PlayerManager>,ISaveable
             player.originalspeed = originalspeed;
             player.flashlight.SetActive(flashlightActive);
             player.ifBrain = ifBrain;
+            player.ifChasing = ifChasing;
         }
         catch
         { }
@@ -40,6 +42,7 @@ public class PlayerManager : Singleton<PlayerManager>,ISaveable
             originalspeed = player.originalspeed;
             flashlightActive = player.flashlight.activeInHierarchy;
             ifBrain=player.ifBrain;
+            ifChasing=player.ifChasing;
         }
         catch
         { }

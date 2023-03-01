@@ -16,5 +16,6 @@ public class Alienation : MonoBehaviour
     public void OnAlienationChangeEvent()
     {
         dialogueController.ShowDialogueEmpty();
+        Debug.Log("empty");
     }
 }

@@ -72,8 +72,13 @@ public class DreamValueManager : Singleton<DreamValueManager>
     private void OnEnterChasingEvent(float amount)
     {
         ifChasing = true;
-        color=GameManager.Instance.globalLight.color;
-        GameManager.Instance.globalLight.color = Color.black;
+
+        if (!AlienationManager.Instance.ifAlienation)
+        {
+            color = GameManager.Instance.globalLight.color;
+            GameManager.Instance.globalLight.color = Color.black;
+        }
+
         if (ChasingCoroutine != null)
         {
             StopCoroutine(ChasingCoroutine);

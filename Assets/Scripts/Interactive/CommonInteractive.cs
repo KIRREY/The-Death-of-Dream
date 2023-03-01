@@ -17,7 +17,10 @@ public class CommonInteractive : Interactive
         if (isDone)
             dialogueController.ShowDialogueFinish();
         else
+        {
             dialogueController.ShowDialogueEmpty();
+            isDone=true;
+        }
     }
 
     protected override void OnAction()

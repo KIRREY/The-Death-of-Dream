@@ -12,6 +12,7 @@ public class DialogueController : MonoBehaviour
     public DialogueData_SO dialogueFinish;
     public int index;
     public bool ifTransform;
+    public bool ifEmpty;
 
     private Stack<string> dialogueEmptyStack;
     private Stack<string> dialogueFinishStack;
@@ -27,6 +28,7 @@ public class DialogueController : MonoBehaviour
             dialogueEmpty = dialogueEmptys[index];
         }
         catch { }
+        ifEmpty = true;
         FillDialogueStack();
         dialogueManager = DialogueManager.Instance;
     }
@@ -51,7 +53,12 @@ public class DialogueController : MonoBehaviour
         if (!isTalking)
         {
             dialogueManager.controller = this.gameObject;
-            dialogueManager.ifEmpty = true;
+            dialogueManager.dialogueWho.text = dialogueEmpty.who;
+            dialogueManager.tachie.color = new Color(0, 0, 0, 1);
+            if (dialogueEmpty.Tachie == null)
+                dialogueManager.tachie.color = new Color(0, 0, 0, 0);
+            else
+                dialogueManager.tachie.sprite = dialogueEmpty.Tachie;
             StartCoroutine(DialogueRoutine(dialogueEmptyStack));
         }
     }
@@ -62,6 +69,12 @@ public class DialogueController : MonoBehaviour
         {
             dialogueManager.controller = this.gameObject;
             dialogueManager.ifEmpty = false;
+            dialogueManager.dialogueWho.text = dialogueFinish.who;
+            dialogueManager.tachie.color = new Color(0, 0, 0, 1);
+            if (dialogueFinish.Tachie == null)
+                dialogueManager.tachie.color = new Color(0, 0, 0, 0);
+            else
+                dialogueManager.tachie.sprite = dialogueFinish.Tachie;
             StartCoroutine(DialogueRoutine(dialogueFinishStack));
         }
     }
@@ -84,6 +97,8 @@ public class DialogueController : MonoBehaviour
                 index++;
                 dialogueEmpty = dialogueEmptys[index];
             }
+            else
+                ifEmpty=false;
             FillDialogueStack();
             isTalking = false; 
             EventHandler.CallGameStateChangerEvent(GameState.GamePlay);

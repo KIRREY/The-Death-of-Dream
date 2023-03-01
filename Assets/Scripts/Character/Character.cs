@@ -23,7 +23,7 @@ public abstract class Character : MonoBehaviour
         Destroy(gameObject);
     }
     public abstract void ResetCharacter(Direction direction);
-    public abstract IEnumerator DamageCharacter(int damage, float interval);
+    public abstract IEnumerator DamageCharacter(int alienationDamage,int dreamvalueDamage, float interval);
     public virtual IEnumerator FlickerCharacter()
     {
         GetComponent<SpriteRenderer>().color = Color.red;

@@ -453,4 +453,7 @@ MonoBehaviour:
   speed: 3
   originalspeed: 0
   flashlight: {fileID: 2471307842101515713}
+  rigidbody2D: {fileID: 0}
+  ifBrain: 0
   distance: 0.5
+  ifChasing: 0

@@ -6430,12 +6430,12 @@ PrefabInstance:
     - target: {fileID: 8445117298739790166, guid: b8b6daa77e50f9b46a5a92bf7b457245,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.39
+      value: 2.48
       objectReference: {fileID: 0}
     - target: {fileID: 8445117298739790166, guid: b8b6daa77e50f9b46a5a92bf7b457245,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.8
+      value: 7.34
       objectReference: {fileID: 0}
     - target: {fileID: 8445117298739790166, guid: b8b6daa77e50f9b46a5a92bf7b457245,
         type: 3}
@@ -6543,7 +6543,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 734114960}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.39, y: 7.8, z: -10}
+  m_LocalPosition: {x: 2.48, y: 7.34, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6576,7 +6576,7 @@ PrefabInstance:
     - target: {fileID: 5855054038400519383, guid: 801e554bff7f5464483f35e8247d72ce,
         type: 3}
       propertyPath: m_Name
-      value: Shrine
+      value: ShrineH2
       objectReference: {fileID: 0}
     - target: {fileID: 5855054038400519386, guid: 801e554bff7f5464483f35e8247d72ce,
         type: 3}
@@ -6660,7 +6660,7 @@ GameObject:
   - component: {fileID: 1153274761}
   - component: {fileID: 1153274760}
   m_Layer: 0
-  m_Name: Square
+  m_Name: SquareH2
   m_TagString: Alienation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6794,6 +6794,7 @@ MonoBehaviour:
   dialogueFinish: {fileID: 11400000, guid: a316cba61c472ac4bb965be53ca3474f, type: 2}
   index: 0
   ifTransform: 0
+  ifEmpty: 0
 --- !u!1001 &1382384455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6976,6 +6977,7 @@ MonoBehaviour:
   dialogueFinish: {fileID: 11400000, guid: e476fb0089add7741a15192654f1a2ab, type: 2}
   index: 0
   ifTransform: 0
+  ifEmpty: 0
 --- !u!212 &1599836578
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7084,6 +7086,7 @@ MonoBehaviour:
   dialogueFinish: {fileID: 11400000, guid: de797b0ff6a8440449c981d994a4fe4d, type: 2}
   index: 0
   ifTransform: 0
+  ifEmpty: 0
 --- !u!58 &1753293278
 CircleCollider2D:
   m_ObjectHideFlags: 0

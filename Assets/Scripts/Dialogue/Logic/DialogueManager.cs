@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
+using UnityEngine.UI;
 
 public class DialogueManager : Singleton<DialogueManager>,ISaveable
 {
     public GameObject controller;
+    public Text dialogueWho;
+    public Image tachie;
     public bool ifEmpty;
     public bool ifTalking;
     public Dictionary<string,int> dialogueIndex=new Dictionary<string,int>();
@@ -17,10 +20,17 @@ public class DialogueManager : Singleton<DialogueManager>,ISaveable
             if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return))
             {
                 DialogueController dialogueController=controller.GetComponent<DialogueController>();
+                ifEmpty=dialogueController.ifEmpty;
                 if (ifEmpty)
+                {
                     dialogueController.ShowDialogueEmpty();
+                    Debug.Log("empty");
+                }
                 else
+                {
                     dialogueController.ShowDialogueFinish();
+                    Debug.Log("finish");
+                }
             }
         }
     }

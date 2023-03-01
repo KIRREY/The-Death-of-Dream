@@ -7,7 +7,7 @@ using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class Player : Character
 {
-    public override IEnumerator DamageCharacter(int damage, float interval)
+    public override IEnumerator DamageCharacter(int alienationDamage, int dreamvalueDamage, float interval)
     {
         yield return null;
     }

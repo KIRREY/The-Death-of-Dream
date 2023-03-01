@@ -25,11 +25,12 @@ public class Wander : Character
     public float directionChangeInterval;
     float currentAngle = 0;
 
-    private void Start()
+    private void OnEnable()
     {
         targetTransform = characterType switch
         {
             CharacterType.Player => FindObjectOfType<Player>().transform,
+            CharacterType.None=>null,
             _ => null
         };
         rb = GetComponent<Rigidbody2D>();
@@ -160,13 +161,13 @@ public class Wander : Character
         }
     }
 
-    public override IEnumerator DamageCharacter(int damage, float interval)
-    {
-        yield return null;  
-    }
-
     public override void ResetCharacter(Direction direction)
     {
 
+    }
+
+    public override IEnumerator DamageCharacter(int alienationDamage, int dreamvalueDamage, float interval)
+    {
+        yield return null;
     }
 }

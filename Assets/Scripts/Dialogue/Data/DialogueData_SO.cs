@@ -7,4 +7,6 @@ public class DialogueData_SO : ScriptableObject
 {
     [TextArea]
     public List<string> dialogueList;
+    public string who=" ";
+    public Sprite Tachie;
 }

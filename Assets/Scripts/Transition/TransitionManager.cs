@@ -1,36 +1,45 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TransitionManager : Singleton<TransitionManager>,ISaveable
+public class TransitionManager : Singleton<TransitionManager>, ISaveable
 {
     [SceneName] public string startScene;
 
     public CanvasGroup fadeCanvasGroup;
+    public CinemachineVirtualCamera virtualCamera;
     public float fadeDuration;
     private bool isFade;
-    private bool canTransition=true;
+    private bool canTransition = true;
+    private bool isStart;
 
     private void Start()
     {
-        StartCoroutine(TransitionToScene("Persistent",startScene,false));
+        isStart = true;
+        StartCoroutine(TransitionToScene("Persistent", startScene, false));
         ISaveable saveable = this;
         saveable.SaveableRegister();
     }
 
-    public void Transition(string from,string to,bool ifNow)
+    public void Transition(string from, string to, bool ifNow)
     {
-        if(!isFade&&canTransition)
-            StartCoroutine(TransitionToScene(from, to,ifNow));
+        if (!isFade && canTransition)
+            StartCoroutine(TransitionToScene(from, to, ifNow));
     }
 
-    private IEnumerator TransitionToScene(string from,string to,bool ifNow)
+    private IEnumerator TransitionToScene(string from, string to, bool ifNow)
     {
-        if(!ifNow)
+        if (!ifNow)
             EventHandler.CallBeforeSceneChangeEvent();
-        yield return Fade(1);
-        if(from!=string.Empty||from== "Persistent")
+        if (!isStart)
+            virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
+
+        yield return Fade(1, 3.5f);
+        isStart = false;
+        yield return new WaitForSeconds(0.1f);
+        if (from != string.Empty || from == "Persistent")
         {
             yield return SceneManager.UnloadSceneAsync(from);
         }
@@ -39,31 +48,56 @@ public class TransitionManager : Singleton<TransitionManager>,ISaveable
         Scene newScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1);
         SceneManager.SetActiveScene(newScene);
 
+        if (PlayerManager.Instance.ifChasing)
+            EventHandler.CallExitChasingEvent(false);
         EventHandler.CallAfterSceneChangeEvent();
-        yield return Fade(0);
+
+        virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
+        virtualCamera.m_Lens.OrthographicSize = 3;
+
+        yield return Fade(0, 5.4f);
     }
 
     /// <summary>
-    /// 淡入淡出场景
+    /// 切换场景
     /// </summary>
     /// <param name="targetAlpha"></param>
     /// <returns></returns>
-    private IEnumerator Fade(float targetAlpha)
+    private IEnumerator Fade(float targetAlpha, float targetScale)
     {
+        EventHandler.CallGameStateChangerEvent(GameState.Pause);
         isFade = true;
 
         fadeCanvasGroup.blocksRaycasts = true;
-        float speed=Mathf.Abs(fadeCanvasGroup.alpha-targetAlpha)/fadeDuration;
-
-        while(!Mathf.Approximately(fadeCanvasGroup.alpha,targetAlpha))
+        float speedFade = Mathf.Abs(fadeCanvasGroup.alpha - targetAlpha) / fadeDuration;
+        float speedScale = 0;
+        if (!isStart)
         {
-            fadeCanvasGroup.alpha = Mathf.MoveTowards(fadeCanvasGroup.alpha, targetAlpha, speed * Time.deltaTime);
+            speedScale = Mathf.Abs(virtualCamera.m_Lens.OrthographicSize - targetScale) / fadeDuration;
+        }
+
+        while (!Mathf.Approximately(fadeCanvasGroup.alpha, targetAlpha))
+        {
+            fadeCanvasGroup.alpha = Mathf.MoveTowards(fadeCanvasGroup.alpha, targetAlpha, speedFade * Time.deltaTime);
+            if (!isStart)
+                virtualCamera.m_Lens.OrthographicSize = Mathf.MoveTowards(virtualCamera.m_Lens.OrthographicSize, targetScale, speedScale * Time.deltaTime);
             yield return null;
+        }
+
+        if (!isStart)
+        {
+            while (!Mathf.Approximately(virtualCamera.m_Lens.OrthographicSize, targetScale))
+            {
+                virtualCamera.m_Lens.OrthographicSize = Mathf.MoveTowards(virtualCamera.m_Lens.OrthographicSize, targetScale, speedScale * Time.deltaTime);
+                yield return null;
+            }
+            virtualCamera.m_Lens.OrthographicSize = targetScale;
         }
 
         fadeCanvasGroup.blocksRaycasts = false;
 
-        isFade=false;
+        isFade = false;
+        EventHandler.CallGameStateChangerEvent(GameState.GamePlay);
     }
 
     public GameSaveData GenerateSaveData()
@@ -76,6 +110,6 @@ public class TransitionManager : Singleton<TransitionManager>,ISaveable
     public void RestoreGameData(GameSaveData saveData)
     {
         bool ifNow = SceneManager.GetActiveScene().name == saveData.currentScene;
-        Transition(SceneManager.GetActiveScene().name, saveData.currentScene,ifNow);
+        Transition(SceneManager.GetActiveScene().name, saveData.currentScene, ifNow);
     }
 }

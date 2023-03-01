@@ -172,7 +172,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &123853055
 Transform:
   m_ObjectHideFlags: 0
@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b6e2c5871a813b46a7146f1c489be3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alienationLevel: 3
+  alienationLevel: 0
 --- !u!114 &123853057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4350,7 +4350,7 @@ GameObject:
   - component: {fileID: 308892279}
   - component: {fileID: 308892278}
   m_Layer: 0
-  m_Name: Square
+  m_Name: SquareH1
   m_TagString: Flag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4492,7 +4492,7 @@ PrefabInstance:
     - target: {fileID: 5855054038400519383, guid: 801e554bff7f5464483f35e8247d72ce,
         type: 3}
       propertyPath: m_Name
-      value: Shrine (1)
+      value: ShrineH1
       objectReference: {fileID: 0}
     - target: {fileID: 5855054038400519386, guid: 801e554bff7f5464483f35e8247d72ce,
         type: 3}

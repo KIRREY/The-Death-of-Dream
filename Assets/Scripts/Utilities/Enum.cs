@@ -11,6 +11,7 @@ public enum ColliderType
 
 public enum CharacterType
 {
+    None,
     Player,
 }
 
