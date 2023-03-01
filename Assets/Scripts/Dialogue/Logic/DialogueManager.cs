@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
@@ -11,6 +12,7 @@ public class DialogueManager : Singleton<DialogueManager>,ISaveable
     public Image tachie;
     public bool ifEmpty;
     public bool ifTalking;
+    public bool ifTransform;
     public Dictionary<string,int> dialogueIndex=new Dictionary<string,int>();
 
     private void Update()
@@ -20,6 +22,11 @@ public class DialogueManager : Singleton<DialogueManager>,ISaveable
             if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return))
             {
                 DialogueController dialogueController=controller.GetComponent<DialogueController>();
+                if(ifTransform)
+                {
+                    ifTransform=false;
+                    EventHandler.CallShowDialogueEvent(string.Empty);
+                }
                 ifEmpty=dialogueController.ifEmpty;
                 if (ifEmpty)
                 {

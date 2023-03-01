@@ -8,8 +8,8 @@ public class DialogueController : MonoBehaviour
     public DialogueData_SO[] dialogueEmptys;
     public DialogueData_SO dialogueEmpty;
     public DialogueData_SO[] dialogueAlienations;
-    public DialogueData_SO dialogueAlienation;
     public DialogueData_SO dialogueFinish;
+    public DialogueData_SO dialogueFinish_A;
     public int index;
     public bool ifTransform;
     public bool ifEmpty;
@@ -42,6 +42,7 @@ public class DialogueController : MonoBehaviour
         {
             dialogueEmptyStack.Push(dialogueEmpty.dialogueList[i]);
         }
+
         for (int i = dialogueFinish.dialogueList.Count - 1; i > -1; i--)
         {
             dialogueFinishStack.Push(dialogueFinish.dialogueList[i]);
@@ -97,11 +98,10 @@ public class DialogueController : MonoBehaviour
                 index++;
                 dialogueEmpty = dialogueEmptys[index];
             }
-            else
-                ifEmpty=false;
+            else 
+                ifEmpty = false;
             FillDialogueStack();
-            isTalking = false; 
-            EventHandler.CallGameStateChangerEvent(GameState.GamePlay);
+            isTalking = false;
         }
     }
 
@@ -121,7 +121,7 @@ public class DialogueController : MonoBehaviour
 
     private void ExitAlienationAction()
     {
-        if (dialogueAlienations != null&&ifTransform)
+        if (dialogueAlienations != null && ifTransform)
         {
             DialogueData_SO[] transform;
             transform = dialogueEmptys;
@@ -139,19 +139,35 @@ public class DialogueController : MonoBehaviour
 
     public void OnAlienationEvent()
     {
-        if (dialogueAlienations != null&&AlienationManager.Instance.alienationLevel>=AlienationLevel.Brain&&!ifTransform)
+        if (AlienationManager.Instance.alienationLevel >= AlienationLevel.Brain && !ifTransform && AlienationManager.Instance.ifAlienation)
         {
-            DialogueData_SO[] transform;
-            transform = dialogueAlienations;
-            dialogueAlienations = dialogueEmptys;
-            dialogueEmptys = transform;
-            FillDialogueStack();
-            ifTransform=true;
-            try
+            if (dialogueAlienations == null && dialogueFinish_A == null)
+                return;
+            ifEmpty=true;
+            index=0;
+            ifTransform = true;
+            dialogueManager.ifTransform = true;
+            if (dialogueAlienations != null)
             {
-                dialogueEmpty = dialogueEmptys[index];
+                DialogueData_SO[] transform;
+                transform = dialogueAlienations;
+                dialogueAlienations = dialogueEmptys;
+                dialogueEmptys = transform;
+                try
+                {
+                    dialogueEmpty = dialogueEmptys[index];
+                }
+                catch { }
             }
-            catch { }
+
+            if (dialogueFinish_A != null)
+            {
+                DialogueData_SO dialogue;
+                dialogue = dialogueFinish_A;
+                dialogueFinish_A = dialogueFinish;
+                dialogueFinish = dialogue;
+            }
+            FillDialogueStack();
         }
     }
 }

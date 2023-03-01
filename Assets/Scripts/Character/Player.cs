@@ -48,7 +48,7 @@ public class Player : Character
             direction.Set(move.x, move.y);
             direction.Normalize();
         }
-        if (!ifPause&&!ifChasing)
+        if (!ifPause && !ifChasing)
         {
             HitCheck();
             FlashControll();
@@ -64,7 +64,7 @@ public class Player : Character
     private bool ifPause;
     private void FixedUpdate()
     {
-        if(!ifPause)
+        if (!ifPause)
             Move();
     }
 
@@ -87,20 +87,20 @@ public class Player : Character
         if (Input.GetKey(KeyCode.A))
         {
             dir.x = -normalize;
-            TransformManager.Instance.playerDirection = Direction.Left;
+            TransformManager.Instance.playerDirection = (Direction)((int)Direction.Left + (normalize - 1) / 2);
             flashlight.transform.rotation = Quaternion.Euler(0, 0, 90);
             animatorDirection = normalize switch
             {
                 1 => 3,
                 -1 => 2,
-                _=>3
+                _ => 3
             };
             animator.SetInteger("Direction", animatorDirection);
         }
         else if (Input.GetKey(KeyCode.D))
         {
             dir.x = normalize;
-            TransformManager.Instance.playerDirection = Direction.Right;
+            TransformManager.Instance.playerDirection = (Direction)((int)Direction.Right - (normalize - 1) / 2);
             flashlight.transform.rotation = Quaternion.Euler(0, 0, 270);
             animatorDirection = normalize switch
             {
@@ -114,7 +114,7 @@ public class Player : Character
         if (Input.GetKey(KeyCode.W))
         {
             dir.y = normalize;
-            TransformManager.Instance.playerDirection = Direction.Up;
+            TransformManager.Instance.playerDirection = (Direction)((int)Direction.Up + (normalize - 1) / 2);
             flashlight.transform.rotation = Quaternion.Euler(0, 0, 0);
             animatorDirection = normalize switch
             {
@@ -127,7 +127,7 @@ public class Player : Character
         else if (Input.GetKey(KeyCode.S))
         {
             dir.y = -normalize;
-            TransformManager.Instance.playerDirection = Direction.Down;
+            TransformManager.Instance.playerDirection = (Direction)((int)Direction.Down - (normalize - 1) / 2);
             flashlight.transform.rotation = Quaternion.Euler(0, 0, 180);
             animatorDirection = normalize switch
             {
@@ -171,7 +171,7 @@ public class Player : Character
 
         if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return))
         {
-            RaycastHit2D hit = Physics2D.Raycast(rigidbody2D.position, direction, distance,LayerMask.GetMask("Default"));
+            RaycastHit2D hit = Physics2D.Raycast(rigidbody2D.position, direction, distance, LayerMask.GetMask("Default"));
             if (hit.collider != null && hit.collider.gameObject.tag == "Interactive")
             {
                 var interactive = hit.collider.gameObject.GetComponent<Interactive>();

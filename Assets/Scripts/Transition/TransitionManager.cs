@@ -7,10 +7,12 @@ using UnityEngine.SceneManagement;
 public class TransitionManager : Singleton<TransitionManager>, ISaveable
 {
     [SceneName] public string startScene;
+    public string lastScene;
 
     public CanvasGroup fadeCanvasGroup;
     public CinemachineVirtualCamera virtualCamera;
     public float fadeDuration;
+    public bool teleport;
     private bool isFade;
     private bool canTransition = true;
     private bool isStart;
@@ -18,6 +20,7 @@ public class TransitionManager : Singleton<TransitionManager>, ISaveable
     private void Start()
     {
         isStart = true;
+        teleport=false;
         StartCoroutine(TransitionToScene("Persistent", startScene, false));
         ISaveable saveable = this;
         saveable.SaveableRegister();
@@ -35,6 +38,7 @@ public class TransitionManager : Singleton<TransitionManager>, ISaveable
             EventHandler.CallBeforeSceneChangeEvent();
         if (!isStart)
             virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
+        lastScene=SceneManager.GetActiveScene().name;
 
         yield return Fade(1, 3.5f);
         isStart = false;
@@ -47,6 +51,13 @@ public class TransitionManager : Singleton<TransitionManager>, ISaveable
 
         Scene newScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1);
         SceneManager.SetActiveScene(newScene);
+        if(teleport)
+        {
+            var player=FindObjectOfType<Player>();
+            string target="Teleport to "+lastScene;
+            player.transform.position = GameObject.Find(target).GetComponent<Teleport>().playerPos.position;
+        }
+        teleport = false;
 
         if (PlayerManager.Instance.ifChasing)
             EventHandler.CallExitChasingEvent(false);

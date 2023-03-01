@@ -17,6 +17,7 @@ public class DialogueUI : MonoBehaviour
         else
         {
             panel.SetActive(false); DialogueManager.Instance.ifTalking = false;
+            EventHandler.CallGameStateChangerEvent(GameState.GamePlay);
         }
         dialogueText.text = dialogue;
     }

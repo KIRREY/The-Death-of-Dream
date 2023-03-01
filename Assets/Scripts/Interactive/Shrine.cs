@@ -11,7 +11,7 @@ public class Shrine : CommonInteractive
 
     public override void EmptyAction()
     {
-        base.EmptyAction();
         EventHandler.CallAlienationEvent();
+        base.EmptyAction();
     }
 }

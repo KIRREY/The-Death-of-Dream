@@ -165,6 +165,8 @@ MonoBehaviour:
   dialogueEmpty: {fileID: 11400000, guid: c502bb2517dc93047bed465e364cb602, type: 2}
   dialogueAlienations:
   - {fileID: 11400000, guid: ba9c403e32256a14a97e2cb7e61c411b, type: 2}
-  dialogueAlienation: {fileID: 0}
   dialogueFinish: {fileID: 11400000, guid: c502bb2517dc93047bed465e364cb602, type: 2}
+  dialogueFinish_A: {fileID: 11400000, guid: ba9c403e32256a14a97e2cb7e61c411b, type: 2}
   index: 0
+  ifTransform: 0
+  ifEmpty: 0

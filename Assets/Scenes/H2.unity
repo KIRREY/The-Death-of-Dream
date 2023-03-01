@@ -123,6 +123,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &60289228 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5481191054920579917, guid: df6c88c4d1248f248959c2b0e4f4564c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1382384455}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &97825092
 GameObject:
   m_ObjectHideFlags: 0
@@ -6810,7 +6816,7 @@ PrefabInstance:
     - target: {fileID: 7114549926614309442, guid: df6c88c4d1248f248959c2b0e4f4564c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.14
+      value: -1.09
       objectReference: {fileID: 0}
     - target: {fileID: 7114549926614309442, guid: df6c88c4d1248f248959c2b0e4f4564c,
         type: 3}
@@ -6864,6 +6870,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7114549926614309443, guid: df6c88c4d1248f248959c2b0e4f4564c,
         type: 3}
+      propertyPath: playerPos
+      value: 
+      objectReference: {fileID: 60289228}
+    - target: {fileID: 7114549926614309443, guid: df6c88c4d1248f248959c2b0e4f4564c,
+        type: 3}
       propertyPath: sceneFrom
       value: H2
       objectReference: {fileID: 0}
@@ -6876,6 +6887,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Teleport to H1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9003368859695550657, guid: df6c88c4d1248f248959c2b0e4f4564c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 9003368859695550657, guid: df6c88c4d1248f248959c2b0e4f4564c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.62
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df6c88c4d1248f248959c2b0e4f4564c, type: 3}
