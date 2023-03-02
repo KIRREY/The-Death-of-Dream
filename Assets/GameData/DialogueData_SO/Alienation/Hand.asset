@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Hand
   m_EditorClassIdentifier: 
   dialogueList:
-  - "\u6C38\u8FDC\u65E0\u6CD5\u89E6\u78B0\u5230\u7684\u771F\u5B9E"
+  - dialogue: "\u6C38\u8FDC\u65E0\u6CD5\u89E6\u78B0\u4E4B\u7269"
+    who: 
+    tachie: {fileID: 0}

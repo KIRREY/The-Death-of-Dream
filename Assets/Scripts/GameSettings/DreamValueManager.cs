@@ -55,14 +55,27 @@ public class DreamValueManager : Singleton<DreamValueManager>
         EventHandler.ExitChasingEvent -= OnExitChasingEvent;
     }
 
+    private void OnAfterSceneChangeEvent()
+    {
+        GameManager.Instance.globalLight.color = color;
+        EventHandler.AfterSceneChangeEvent -= OnAfterSceneChangeEvent;
+    }
+
     private void OnExitChasingEvent(bool ifChaseDown)
     {
         ifChasing = false;
-        GameManager.Instance.globalLight.color = color;
         if (ChasingCoroutine != null)
         {
             StopCoroutine(ChasingCoroutine);
             ChasingCoroutine = null;
+        }
+        if(ifChaseDown)
+        {
+            GameManager.Instance.globalLight.color = color;
+        }
+        else
+        {
+            EventHandler.AfterSceneChangeEvent += OnAfterSceneChangeEvent;
         }
     }
 

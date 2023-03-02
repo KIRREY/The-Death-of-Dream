@@ -25,7 +25,7 @@ public class DialogueManager : Singleton<DialogueManager>,ISaveable
                 if(ifTransform)
                 {
                     ifTransform=false;
-                    EventHandler.CallShowDialogueEvent(string.Empty);
+                    EventHandler.CallShowDialogueEvent(string.Empty,dialogueData.TextDia.Text1);
                 }
                 ifEmpty=dialogueController.ifEmpty;
                 if (ifEmpty)

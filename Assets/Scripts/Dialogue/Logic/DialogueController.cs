@@ -14,8 +14,8 @@ public class DialogueController : MonoBehaviour
     public bool ifTransform;
     public bool ifEmpty;
 
-    private Stack<string> dialogueEmptyStack;
-    private Stack<string> dialogueFinishStack;
+    private Stack<dialogueData> dialogueEmptyStack;
+    private Stack<dialogueData> dialogueFinishStack;
     DialogueManager dialogueManager;
 
     private bool isTalking;
@@ -31,12 +31,17 @@ public class DialogueController : MonoBehaviour
         ifEmpty = true;
         FillDialogueStack();
         dialogueManager = DialogueManager.Instance;
+        isTalking = false;
+        if (gameObject.tag == "StoryDialogue")
+        {
+            ShowDialogueEmpty();
+        }
     }
 
     private void FillDialogueStack()
     {
-        dialogueEmptyStack = new Stack<string>();
-        dialogueFinishStack = new Stack<string>();
+        dialogueEmptyStack = new Stack<dialogueData>();
+        dialogueFinishStack = new Stack<dialogueData>();
 
         for (int i = dialogueEmpty.dialogueList.Count - 1; i > -1; i--)
         {
@@ -52,53 +57,44 @@ public class DialogueController : MonoBehaviour
     public void ShowDialogueEmpty()
     {
         if (!isTalking)
-        {
-            dialogueManager.controller = this.gameObject;
-            dialogueManager.dialogueWho.text = dialogueEmpty.who;
-            dialogueManager.tachie.color = new Color(0, 0, 0, 1);
-            if (dialogueEmpty.Tachie == null)
-                dialogueManager.tachie.color = new Color(0, 0, 0, 0);
-            else
-                dialogueManager.tachie.sprite = dialogueEmpty.Tachie;
             StartCoroutine(DialogueRoutine(dialogueEmptyStack));
-        }
     }
 
     public void ShowDialogueFinish()
     {
         if (!isTalking)
         {
-            dialogueManager.controller = this.gameObject;
             dialogueManager.ifEmpty = false;
-            dialogueManager.dialogueWho.text = dialogueFinish.who;
-            dialogueManager.tachie.color = new Color(0, 0, 0, 1);
-            if (dialogueFinish.Tachie == null)
-                dialogueManager.tachie.color = new Color(0, 0, 0, 0);
-            else
-                dialogueManager.tachie.sprite = dialogueFinish.Tachie;
             StartCoroutine(DialogueRoutine(dialogueFinishStack));
         }
     }
 
-    private IEnumerator DialogueRoutine(Stack<string> data)
+    private IEnumerator DialogueRoutine(Stack<dialogueData> data)
     {
         isTalking = true;
-        if (data.TryPop(out string result))
+        if (data.TryPop(out var result))
         {
-            EventHandler.CallShowDialogueEvent(result);
+            EventHandler.CallShowDialogueEvent(result.dialogue,result.text);
+            dialogueManager.controller = this.gameObject;
+            dialogueManager.dialogueWho.text = result.who;
+            dialogueManager.tachie.color = new Color(0, 0, 0, 1);
+            if (result.tachie == null)
+                dialogueManager.tachie.color = new Color(0, 0, 0, 0);
+            else
+                dialogueManager.tachie.sprite = result.tachie;
             yield return null;
             isTalking = false;
             EventHandler.CallGameStateChangerEvent(GameState.Pause);
         }
         else
         {
-            EventHandler.CallShowDialogueEvent(string.Empty);
+            EventHandler.CallShowDialogueEvent(string.Empty,dialogueData.TextDia.Text1);
             if (index < (dialogueEmptys.Length - 1))
             {
                 index++;
                 dialogueEmpty = dialogueEmptys[index];
             }
-            else 
+            else
                 ifEmpty = false;
             FillDialogueStack();
             isTalking = false;
@@ -143,8 +139,8 @@ public class DialogueController : MonoBehaviour
         {
             if (dialogueAlienations == null && dialogueFinish_A == null)
                 return;
-            ifEmpty=true;
-            index=0;
+            ifEmpty = true;
+            index = 0;
             ifTransform = true;
             dialogueManager.ifTransform = true;
             if (dialogueAlienations != null)

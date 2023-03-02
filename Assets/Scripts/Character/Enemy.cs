@@ -11,7 +11,7 @@ public class Enemy : Character
         yield return new WaitForSeconds(interval);
 
         EventHandler.CallExitChasingEvent(true);
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
     }
 
     public override void ResetCharacter(Direction direction)
@@ -33,5 +33,21 @@ public class Enemy : Character
     {
         if (collsion.GetComponent<Player>() != null)
             StartCoroutine(DamageCharacter(alienationDamage,dreamvalueDamage,interval));
+    }
+
+    private void OnEnable()
+    {
+        EventHandler.ExitChasingEvent += OnExitChasingEvent;
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.ExitChasingEvent -= OnExitChasingEvent;
+    }
+
+    private void OnExitChasingEvent(bool obj)
+    {
+        if(!obj)
+            this.gameObject.SetActive(false);
     }
 }

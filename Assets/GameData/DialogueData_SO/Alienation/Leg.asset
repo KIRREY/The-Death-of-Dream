@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Leg
   m_EditorClassIdentifier: 
   dialogueList:
-  - "\u524D\u9762\u7684\u533A\u57DF\u4EE5\u540E\u518D\u6765\u63A2\u7D22\u5427"
+  - dialogue: "\u524D\u9762\u7684\u533A\u57DF\u4EE5\u540E\u518D\u6765\u63A2\u7D22\u5427"
+    who: 
+    tachie: {fileID: 0}

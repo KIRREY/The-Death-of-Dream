@@ -13,5 +13,15 @@ MonoBehaviour:
   m_Name: DialogueData_SO
   m_EditorClassIdentifier: 
   dialogueList:
-  - lelele
-  - fjifjiejfief
+  - dialogue: "\u8FD9\u53EA\u662F\u4E00\u4E2A\u6728\u6876"
+    who: 
+    tachie: {fileID: 0}
+  - dialogue: "\u559C\u6B22\u70B9\u6211\u662F\u5427\uFF1F"
+    who: 
+    tachie: {fileID: 0}
+  - dialogue: "\u2026\u2026\u8FD8\u70B9\uFF1F"
+    who: 
+    tachie: {fileID: 0}
+  - dialogue: "\u2026\u2026<size=70><color=red>\u4E9A\u62C9\u90A3\u4E00\u5361\uFF01</color></size>"
+    who: 
+    tachie: {fileID: 0}

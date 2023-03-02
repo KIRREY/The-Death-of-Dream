@@ -36,6 +36,8 @@ public class ObjectManager : Singleton<ObjectManager>
 
     private void OnBeforeSceneChangeEvent()
     {
+        if (PlayerManager.Instance.ifChasing)
+            EventHandler.CallExitChasingEvent(false);
         foreach (var _object in Resources.FindObjectsOfTypeAll(typeof(GameObject)) as GameObject[])
         {
             if (_object.gameObject.scene != SceneManager.GetActiveScene())

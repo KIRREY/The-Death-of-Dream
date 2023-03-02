@@ -218,6 +218,7 @@ public class Player : Character
             GameState.Pause => true,
             _ => true,
         };
+        PlayerManager.Instance.ifChasing = ifChasing;
     }
 
     private void OnGameStateChangedEvent(GameState gameState)

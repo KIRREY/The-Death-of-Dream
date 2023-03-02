@@ -34,15 +34,17 @@ public class TransitionManager : Singleton<TransitionManager>, ISaveable
 
     private IEnumerator TransitionToScene(string from, string to, bool ifNow)
     {
-        if (!ifNow)
-            EventHandler.CallBeforeSceneChangeEvent();
+        lastScene = SceneManager.GetActiveScene().name;
         if (!isStart)
             virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
-        lastScene=SceneManager.GetActiveScene().name;
 
-        yield return Fade(1, 3.5f);
+        if (!ifNow)
+            EventHandler.CallBeforeSceneChangeEvent();
+
+        yield return Fade(1f, 3.5f);
         isStart = false;
         yield return new WaitForSeconds(0.1f);
+
         if (from != string.Empty || from == "Persistent")
         {
             yield return SceneManager.UnloadSceneAsync(from);
@@ -53,14 +55,12 @@ public class TransitionManager : Singleton<TransitionManager>, ISaveable
         SceneManager.SetActiveScene(newScene);
         if(teleport)
         {
-            var player=FindObjectOfType<Player>();
+            var player = FindObjectOfType<Player>();
             string target="Teleport to "+lastScene;
             player.transform.position = GameObject.Find(target).GetComponent<Teleport>().playerPos.position;
         }
         teleport = false;
 
-        if (PlayerManager.Instance.ifChasing)
-            EventHandler.CallExitChasingEvent(false);
         EventHandler.CallAfterSceneChangeEvent();
 
         virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();

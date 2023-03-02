@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: DialogueData_SO_Finish
   m_EditorClassIdentifier: 
   dialogueList:
-  - ennnnnn
+  - dialogue: "\u2026\u2026<size=70><color=red>\u4E9A\u62C9\u90A3\u4E00\u5361\uFF01</color></size>"
+    who: 
+    tachie: {fileID: 0}

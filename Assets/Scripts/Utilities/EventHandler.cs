@@ -9,10 +9,10 @@ public static class EventHandler
         StartNewGameEvent?.Invoke(gameWeek);
     }
 
-    public static event Action<string> ShowDialogueEvent;
-    public static void CallShowDialogueEvent(string dialogue)
+    public static event Action<string,dialogueData.TextDia> ShowDialogueEvent;
+    public static void CallShowDialogueEvent(string dialogue,dialogueData.TextDia text)
     {
-        ShowDialogueEvent?.Invoke(dialogue);
+        ShowDialogueEvent?.Invoke(dialogue,text);
     }
 
     public static event Action<GameState> GameStateChangedEvent;

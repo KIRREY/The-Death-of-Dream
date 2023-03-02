@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Eye
   m_EditorClassIdentifier: 
   dialogueList:
-  - "\u4F3C\u4E4E\u6709\u4EC0\u4E48\u770B\u4E0D\u89C1\u7684\u4E1C\u897F"
+  - dialogue: "\u4F3C\u4E4E\u6709\u4EC0\u4E48\u770B\u4E0D\u89C1\u7684\u4E1C\u897F"
+    who: 
+    tachie: {fileID: 0}

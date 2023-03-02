@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Shrine
   m_EditorClassIdentifier: 
   dialogueList:
-  - "\u4F60\u60CA\u6270\u4E86XXXX"
+  - dialogue: "\u4F60\u60CA\u6270\u4E86XXXX"
+    who: 
+    tachie: {fileID: 0}

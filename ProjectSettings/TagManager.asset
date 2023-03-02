@@ -8,6 +8,7 @@ TagManager:
   - Interactive
   - Alienation
   - Flag
+  - StoryDialogue
   layers:
   - Default
   - TransparentFX
