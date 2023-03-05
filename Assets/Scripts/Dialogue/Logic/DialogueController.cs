@@ -14,44 +14,42 @@ public class DialogueController : MonoBehaviour
     public bool ifTransform;
     public bool ifEmpty;
 
-    private Stack<dialogueData> dialogueEmptyStack;
-    private Stack<dialogueData> dialogueFinishStack;
+    private Stack<DialogueData> dialogueEmptyStack;
+    private Stack<DialogueData> dialogueFinishStack;
     DialogueManager dialogueManager;
 
     private bool isTalking;
 
-    private void Awake()
+    public void FillDialogueStack()
     {
+        dialogueEmptyStack = new Stack<DialogueData>();
+        dialogueFinishStack = new Stack<DialogueData>();
         try
         {
-            index = 0;
-            dialogueEmpty = dialogueEmptys[index];
+            Debug.Log(dialogueEmpty.dialogueList.Count);
+        }
+        catch
+        { Debug.Log("None");
+            try
+            {
+                Debug.Log(dialogueEmpty);
+            }
+            catch { Debug.Log("NO!"); }
+        }
+
+        try
+        {
+            for (int i = dialogueEmpty.dialogueList.Count - 1; i > -1; i--)
+            {
+                dialogueEmptyStack.Push(dialogueEmpty.dialogueList[i]);
+            }
+
+            for (int i = dialogueFinish.dialogueList.Count - 1; i > -1; i--)
+            {
+                dialogueFinishStack.Push(dialogueFinish.dialogueList[i]);
+            }
         }
         catch { }
-        ifEmpty = true;
-        FillDialogueStack();
-        dialogueManager = DialogueManager.Instance;
-        isTalking = false;
-        if (gameObject.tag == "StoryDialogue")
-        {
-            ShowDialogueEmpty();
-        }
-    }
-
-    private void FillDialogueStack()
-    {
-        dialogueEmptyStack = new Stack<dialogueData>();
-        dialogueFinishStack = new Stack<dialogueData>();
-
-        for (int i = dialogueEmpty.dialogueList.Count - 1; i > -1; i--)
-        {
-            dialogueEmptyStack.Push(dialogueEmpty.dialogueList[i]);
-        }
-
-        for (int i = dialogueFinish.dialogueList.Count - 1; i > -1; i--)
-        {
-            dialogueFinishStack.Push(dialogueFinish.dialogueList[i]);
-        }
     }
 
     public void ShowDialogueEmpty()
@@ -69,12 +67,14 @@ public class DialogueController : MonoBehaviour
         }
     }
 
-    private IEnumerator DialogueRoutine(Stack<dialogueData> data)
+    private IEnumerator DialogueRoutine(Stack<DialogueData> data)
     {
         isTalking = true;
         if (data.TryPop(out var result))
         {
-            EventHandler.CallShowDialogueEvent(result.dialogue,result.text);
+            EventHandler.CallShowDialogueEvent(result.dialogue, result.text, result.interval,result.optionsDatas);
+            dialogueManager.dialogueEvent = result.dialogueEvent;
+            dialogueManager.optionsDatas = result.optionsDatas;
             dialogueManager.controller = this.gameObject;
             dialogueManager.dialogueWho.text = result.who;
             dialogueManager.tachie.color = new Color(0, 0, 0, 1);
@@ -88,7 +88,15 @@ public class DialogueController : MonoBehaviour
         }
         else
         {
-            EventHandler.CallShowDialogueEvent(string.Empty,dialogueData.TextDia.Text1);
+            EventHandler.CallShowDialogueEvent(string.Empty, DialogueData.TextDia.Text1, 0f,new List<OptionsData>());
+            switch (dialogueManager.dialogueEvent)
+            {
+                case DialogueEvent.None: break;
+                case DialogueEvent.Teleport:
+                    gameObject.GetComponent<Teleport>().TeleportToScene();
+                    break;
+            }
+            dialogueManager.dialogueEvent = DialogueEvent.None;
             if (index < (dialogueEmptys.Length - 1))
             {
                 index++;
@@ -103,6 +111,20 @@ public class DialogueController : MonoBehaviour
 
     private void OnEnable()
     {
+        try
+        {
+            index = 0;
+            dialogueEmpty = dialogueEmptys[index];
+        }
+        catch { }
+        ifEmpty = true;
+        FillDialogueStack();
+        dialogueManager = DialogueManager.Instance;
+        isTalking = false;
+        if (gameObject.tag == "StoryDialogue")
+        {
+            ShowDialogueEmpty();
+        }
         EventHandler.AlienationEvent += OnAlienationEvent;
         EventHandler.ExitAlienationEvent += ExitAlienationAction;
         EventHandler.AfterSceneChangeEvent += OnAlienationEvent;

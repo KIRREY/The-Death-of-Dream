@@ -13,19 +13,28 @@ public class DialogueManager : Singleton<DialogueManager>,ISaveable
     public bool ifEmpty;
     public bool ifTalking;
     public bool ifTransform;
+    public bool ifAllTalked;
+    public bool ifIntervaled;
+    public List<OptionsData> optionsDatas;
+    public DialogueEvent dialogueEvent;
     public Dictionary<string,int> dialogueIndex=new Dictionary<string,int>();
 
     private void Update()
     {
         if (ifTalking)
         {
-            if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return)||ifIntervaled)
             {
                 DialogueController dialogueController=controller.GetComponent<DialogueController>();
+                if(!ifAllTalked)
+                {
+                    EventHandler.CallSpikCurrentDialogueEvent();
+                    return;
+                }
                 if(ifTransform)
                 {
                     ifTransform=false;
-                    EventHandler.CallShowDialogueEvent(string.Empty,dialogueData.TextDia.Text1);
+                    EventHandler.CallShowDialogueEvent(string.Empty,DialogueData.TextDia.Text1,0f,optionsDatas);
                 }
                 ifEmpty=dialogueController.ifEmpty;
                 if (ifEmpty)

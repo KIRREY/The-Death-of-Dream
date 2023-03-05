@@ -11,7 +11,11 @@ public class Teleport : MonoBehaviour
 
     private void Awake()
     {
-        playerPos = transform.GetChild(0);
+        try
+        {
+            playerPos = transform.GetChild(0);
+        }
+        catch { }
     }
 
     public void TeleportToScene()

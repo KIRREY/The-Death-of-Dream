@@ -55,9 +55,13 @@ public class TransitionManager : Singleton<TransitionManager>, ISaveable
         SceneManager.SetActiveScene(newScene);
         if(teleport)
         {
-            var player = FindObjectOfType<Player>();
-            string target="Teleport to "+lastScene;
-            player.transform.position = GameObject.Find(target).GetComponent<Teleport>().playerPos.position;
+            try
+            {
+                var player = FindObjectOfType<Player>();
+                string target = "Teleport to " + lastScene;
+                player.transform.position = GameObject.Find(target).GetComponent<Teleport>().playerPos.position;
+            }
+            catch { }
         }
         teleport = false;
 

@@ -13,87 +13,161 @@ MonoBehaviour:
   m_Name: Prologue
   m_EditorClassIdentifier: 
   dialogueList:
-  - dialogue: "\u3010\u2026\u2026\u3011"
+  - dialogue: "\u2026\u2026"
     who: ??
     tachie: {fileID: 0}
     text: 0
+    interval: 0.2
+    dialogueEvent: 0
+    optionsDatas: []
   - dialogue: "\u3010\u53C8\u662F\u8FD9\u6837\u2026\u2026\u4E0D\u8FC7\u2026\u2026\u65E0\u6240\u8C13\u4E86\u3011"
     who: ??
     tachie: {fileID: 0}
     text: 0
+    interval: 0.2
+    dialogueEvent: 0
+    optionsDatas: []
   - dialogue: "\uFF1F\uFF1F\u6BEB\u65E0\u610F\u4E49\u5730\u611F\u53F9\uFF0C\u4E00\u5982\u65E2\u5F80\u3002\u8FD9\u662F\u4E2A\u68A6\uFF0C\u4F46\u4E5F\u65E0\u975E\u662F\u68A6\u4E86\uFF0C\u6BD5\u7ADF\u81EA\u6709\u8BB0\u5FC6\u6765\u4FBF\u5B58\u5728\u3002"
     who: 
     tachie: {fileID: 0}
     text: 0
+    interval: 0.2
+    dialogueEvent: 0
+    optionsDatas: []
   - dialogue: " \uFF1F\uFF1F\u95ED\u4E0A\u4E86\u773C\u775B\uFF0C\u4E00\u5982\u5E73\u5E38\uFF0C\u7B49\u5F85\u9ED1\u6697\u6563\u7F3A\u3002"
     who: 
     tachie: {fileID: 0}
     text: 0
+    interval: 0.2
+    dialogueEvent: 0
+    optionsDatas: []
+  - dialogue: 
+    who: 
+    tachie: {fileID: 0}
+    text: 0
+    interval: 1
+    dialogueEvent: 0
+    optionsDatas: []
   - dialogue: "\u2026\u2026 "
     who: 
     tachie: {fileID: 0}
     text: 1
+    interval: 1
+    dialogueEvent: 0
+    optionsDatas: []
   - dialogue: "\u201C\u2026\u2026%\uFFE5#\u2026\u2026#\uFF08\uFFE5\u201D "
     who: 
     tachie: {fileID: 0}
     text: 1
+    interval: 1
+    dialogueEvent: 0
+    optionsDatas: []
   - dialogue: " \u201C#\uFFE5%\u2026\u2026%\uFF0C\uFFE5\uFF0C\u522B\u8FC7\u6765\u201D"
     who: 
     tachie: {fileID: 0}
     text: 1
+    interval: 1
+    dialogueEvent: 0
+    optionsDatas: []
   - dialogue: "\u201C@\u2026&\uFFE5@#\uFFE5\u2026\u2026\u6076\u9B54\uFF0C@3\u2026\u2026&\uFFE5\uFF01\u201D"
     who: 
     tachie: {fileID: 0}
     text: 1
-  - dialogue: "\u3010\uFF1F\u3011\n\n"
+    interval: 0.5
+    dialogueEvent: 0
+    optionsDatas: []
+  - dialogue: "\u3010\uFF1F\u3011"
     who: "\uFF1F\uFF1F"
     tachie: {fileID: 0}
     text: 0
-  - dialogue: "\u3010\u4EC0\u4E48\u60C5\u51B5\u3002\u3011\n"
+    interval: 0.2
+    dialogueEvent: 0
+    optionsDatas: []
+  - dialogue: "\u3010\u4EC0\u4E48\u60C5\u51B5\u3002\u3011"
     who: "\uFF1F\uFF1F"
     tachie: {fileID: 0}
     text: 0
-  - dialogue: "\uFF1F\uFF1F\u60F3\u8981\u7741\u5F00\u770B\u770B\u8FD9\u7247\u8BE1\u8C32\u7684\u68A6\u6709\u4E86\u4F55\u79CD\u53D8\u5316\uFF0C\u53EF\u8111\u6D77\u4E2D\u5374\u4F20\u6765\u963B\u6B62\u7684\u58F0\u97F3\u3002\n"
+    interval: 0.2
+    dialogueEvent: 0
+    optionsDatas: []
+  - dialogue: "\uFF1F\uFF1F\u60F3\u8981\u7741\u5F00\u770B\u770B\u8FD9\u7247\u8BE1\u8C32\u7684\u68A6\u6709\u4E86\u4F55\u79CD\u53D8\u5316\uFF0C\u53EF\u8111\u6D77\u4E2D\u5374\u4F20\u6765\u963B\u6B62\u7684\u58F0\u97F3\u3002"
     who: 
     tachie: {fileID: 0}
     text: 0
+    interval: 0.2
+    dialogueEvent: 0
+    optionsDatas: []
   - dialogue: "\u3010\u522B\u7741\u773C\u3011"
     who: 
     tachie: {fileID: 0}
     text: 1
+    interval: 0.5
+    dialogueEvent: 0
+    optionsDatas: []
   - dialogue: "\u3010\u5343\u4E07\u4E0D\u80FD\u7741\u773C\u3011"
     who: 
     tachie: {fileID: 0}
     text: 1
+    interval: 0.5
+    dialogueEvent: 0
+    optionsDatas: []
   - dialogue: "\u3010\u8D76\u5FEB\u7761\u5427\u3011"
     who: 
     tachie: {fileID: 0}
     text: 1
+    interval: 0.5
+    dialogueEvent: 0
+    optionsDatas: []
   - dialogue: "\u3010\u7761\u7740\u5C31\u597D\u4E86\u3011"
     who: 
     tachie: {fileID: 0}
     text: 1
+    interval: 0.5
+    dialogueEvent: 0
+    optionsDatas: []
   - dialogue: "\u2026\u2026"
     who: 
     tachie: {fileID: 0}
     text: 1
-  - dialogue: "<size=100><color=red>[\u591F\u4E86]</color></size>"
+    interval: 3
+    dialogueEvent: 0
+    optionsDatas: []
+  - dialogue: "<size=100><color=red>\u591F\u4E86</color></size>"
     who: 
     tachie: {fileID: 0}
     text: 1
-  - dialogue: "<size=100><color=red>[\u771F\u662F\u6709\u591F\u80C6\u5C0F\u554A]</color></size>"
+    interval: 0.2
+    dialogueEvent: 0
+    optionsDatas: []
+  - dialogue: "<size=100><color=red>\u771F\u662F\u6709\u591F\u80C6\u5C0F\u554A</color></size>"
     who: 
     tachie: {fileID: 0}
     text: 1
-  - dialogue: "<size=100><color=red>[\u4E3A\u4EC0\u4E48\u4E0D\u6562\u7741\u5F00\u5462]</color></size>"
+    interval: 0.2
+    dialogueEvent: 0
+    optionsDatas: []
+  - dialogue: "<size=100><color=red>\u4E3A\u4EC0\u4E48\u4E0D\u6562\u7741\u5F00\u5462</color></size>"
     who: 
     tachie: {fileID: 0}
     text: 1
-  - dialogue: "<size=100><color=red>[\u662F\u4E0D\u60F3\u5462\u2026\u2026\u8FD8\u662F\u2026\u2026]</color></size>"
+    interval: 0.2
+    dialogueEvent: 0
+    optionsDatas: []
+  - dialogue: "<size=100><color=red>\u662F\u4E0D\u60F3\u5462\u2026\u2026\u8FD8\u662F\u2026\u2026</color></size>"
     who: 
     tachie: {fileID: 0}
     text: 1
-  - dialogue: "<size=100><color=red>[\u4E0D\u6562\u5462]</color></size>"
+    interval: 0.2
+    dialogueEvent: 0
+    optionsDatas: []
+  - dialogue: "<size=100><color=red>\u4E0D\u6562\u5462</color></size>"
     who: 
     tachie: {fileID: 0}
     text: 1
+    interval: 0.2
+    dialogueEvent: 0
+    optionsDatas:
+    - option: "\u7741\u5F00"
+      nextDialogue: {fileID: 11400000, guid: 530296ed987b0a04585e262773226186, type: 2}
+    - option: "\u2026\u2026"
+      nextDialogue: {fileID: 11400000, guid: 1e29af2f9104f56469f2627662147e97, type: 2}

@@ -405,6 +405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 946574734}
   - component: {fileID: 946574733}
+  - component: {fileID: 946574735}
   m_Layer: 0
   m_Name: DialoguePrologue
   m_TagString: StoryDialogue
@@ -425,10 +426,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueEmptys:
-  - {fileID: 11400000, guid: e04e652e183f62b4192aeded1bb4e8f9, type: 2}
-  dialogueEmpty: {fileID: 0}
+  - {fileID: 11400000, guid: e7962d6701ca9b04283adcdd76cf8d7d, type: 2}
+  dialogueEmpty: {fileID: 11400000, guid: e7962d6701ca9b04283adcdd76cf8d7d, type: 2}
   dialogueAlienations: []
-  dialogueFinish: {fileID: 11400000, guid: e04e652e183f62b4192aeded1bb4e8f9, type: 2}
+  dialogueFinish: {fileID: 11400000, guid: e7962d6701ca9b04283adcdd76cf8d7d, type: 2}
   dialogueFinish_A: {fileID: 0}
   index: 0
   ifTransform: 0
@@ -448,6 +449,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &946574735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946574732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c75da8dca2f414349bd4629abfbba15d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneFrom: Prologue
+  sceneToGO: H1
+  direction: 0
+  playerPos: {fileID: 0}
 --- !u!1 &1501677777
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public static class EventHandler
@@ -9,10 +10,16 @@ public static class EventHandler
         StartNewGameEvent?.Invoke(gameWeek);
     }
 
-    public static event Action<string,dialogueData.TextDia> ShowDialogueEvent;
-    public static void CallShowDialogueEvent(string dialogue,dialogueData.TextDia text)
+    public static event Action<string,DialogueData.TextDia,float, List<OptionsData>> ShowDialogueEvent;
+    public static void CallShowDialogueEvent(string dialogue,DialogueData.TextDia text,float interval, List<OptionsData> optionsDatas)
     {
-        ShowDialogueEvent?.Invoke(dialogue,text);
+        ShowDialogueEvent?.Invoke(dialogue,text,interval,optionsDatas);
+    }
+
+    public static event Action SkipCurrentDialogueEvent;
+    public static void CallSpikCurrentDialogueEvent()
+    {
+        SkipCurrentDialogueEvent?.Invoke();
     }
 
     public static event Action<GameState> GameStateChangedEvent;
