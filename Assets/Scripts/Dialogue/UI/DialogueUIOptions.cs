@@ -7,6 +7,8 @@ public class DialogueUIOptions : Singleton<DialogueUIOptions>
 {
     Coroutine select;
     public GameObject OptionsPanel;
+    public GameObject optionNull;
+    public GameObject currentOption;
     public Button button;
     public Image Image;
     public int index;
@@ -33,7 +35,6 @@ public class DialogueUIOptions : Singleton<DialogueUIOptions>
 
     IEnumerator SelectOptions()
     {
-        Debug.Log("start");
         Fade(index);
         while (true)
         {
@@ -46,21 +47,33 @@ public class DialogueUIOptions : Singleton<DialogueUIOptions>
             {
                 index = Mathf.Clamp(index + 1, 0, max - 1);
             }
-            if(Input.GetKeyDown(KeyCode.Return))
+            Fade(index);
+            if (Input.GetKeyDown(KeyCode.Return))
             {
+                DialogueManager.Instance.controller = optionNull;
                 button.SendMessage("Press");
             }
-            Fade(index);
             yield return null;
         }
+    }
+
+    void TransformDialogue(DialogueController dialogueController)
+    {
+        DialogueController nullController = optionNull.GetComponent<DialogueController>();
+        nullController.dialogueEmpty=dialogueController.dialogueEmpty;
+        nullController.FillDialogueStack();
     }
 
     void Fade(int indexF)
     {
         try
         {
-            button = OptionsPanel.transform.GetChild(indexF).gameObject.GetComponent<Button>();
-            Image = OptionsPanel.transform.GetChild(indexF).gameObject.GetComponent<Image>();
+            if(Image!=null)
+                Image.color = new Color(Image.color.r, Image.color.g, Image.color.b, 1);
+            currentOption = OptionsPanel.transform.GetChild(indexF).gameObject;
+            TransformDialogue(currentOption.GetComponent<DialogueController>());
+            button = currentOption.GetComponent<Button>();
+            Image = currentOption.GetComponent<Image>();
             Image.color = new Color(Image.color.r, Image.color.g, Image.color.b, Mathf.PingPong(Time.time, 1));
         }
         catch { }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ public class DialogueController : MonoBehaviour
 
     private Stack<DialogueData> dialogueEmptyStack;
     private Stack<DialogueData> dialogueFinishStack;
-    DialogueManager dialogueManager;
+    public DialogueManager dialogueManager;
 
     private bool isTalking;
 
@@ -26,24 +27,13 @@ public class DialogueController : MonoBehaviour
         dialogueFinishStack = new Stack<DialogueData>();
         try
         {
-            Debug.Log(dialogueEmpty.dialogueList.Count);
-        }
-        catch
-        { Debug.Log("None");
-            try
-            {
-                Debug.Log(dialogueEmpty);
-            }
-            catch { Debug.Log("NO!"); }
-        }
-
-        try
-        {
             for (int i = dialogueEmpty.dialogueList.Count - 1; i > -1; i--)
             {
                 dialogueEmptyStack.Push(dialogueEmpty.dialogueList[i]);
             }
 
+            if (dialogueFinish == null)
+                return;
             for (int i = dialogueFinish.dialogueList.Count - 1; i > -1; i--)
             {
                 dialogueFinishStack.Push(dialogueFinish.dialogueList[i]);
@@ -72,10 +62,14 @@ public class DialogueController : MonoBehaviour
         isTalking = true;
         if (data.TryPop(out var result))
         {
-            EventHandler.CallShowDialogueEvent(result.dialogue, result.text, result.interval,result.optionsDatas);
-            dialogueManager.dialogueEvent = result.dialogueEvent;
-            dialogueManager.optionsDatas = result.optionsDatas;
+            if(dialogueManager.eventName!=null)
+            {
+                GetEvent();
+            }
+            EventHandler.CallShowDialogueEvent(result.dialogue, result.text, result.interval, result.optionsDatas);
             dialogueManager.controller = this.gameObject;
+            dialogueManager.eventName = result.eventName;
+            dialogueManager.optionsDatas = result.optionsDatas;
             dialogueManager.dialogueWho.text = result.who;
             dialogueManager.tachie.color = new Color(0, 0, 0, 1);
             if (result.tachie == null)
@@ -88,15 +82,8 @@ public class DialogueController : MonoBehaviour
         }
         else
         {
-            EventHandler.CallShowDialogueEvent(string.Empty, DialogueData.TextDia.Text1, 0f,new List<OptionsData>());
-            switch (dialogueManager.dialogueEvent)
-            {
-                case DialogueEvent.None: break;
-                case DialogueEvent.Teleport:
-                    gameObject.GetComponent<Teleport>().TeleportToScene();
-                    break;
-            }
-            dialogueManager.dialogueEvent = DialogueEvent.None;
+            EventHandler.CallShowDialogueEvent(string.Empty, DialogueData.TextDia.Text1, 0f, new List<OptionsData>());
+            GetEvent();
             if (index < (dialogueEmptys.Length - 1))
             {
                 index++;
@@ -107,6 +94,22 @@ public class DialogueController : MonoBehaviour
             FillDialogueStack();
             isTalking = false;
         }
+    }
+
+    void GetEvent()
+    {
+        if (dialogueManager.eventName == null)
+            return;
+        Type type = Type.GetType(dialogueManager.eventName);
+        gameObject.AddComponent(type);
+        var dialogueEvent = gameObject.GetComponent<DialogueEvent>();
+        dialogueEvent?.dialogueEventAction();
+        dialogueManager.eventName = string.Empty;
+    }
+
+    private void Start()
+    {
+        dialogueManager = DialogueManager.Instance;
     }
 
     private void OnEnable()

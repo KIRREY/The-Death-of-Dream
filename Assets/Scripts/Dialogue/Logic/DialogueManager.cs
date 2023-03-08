@@ -16,7 +16,7 @@ public class DialogueManager : Singleton<DialogueManager>,ISaveable
     public bool ifAllTalked;
     public bool ifIntervaled;
     public List<OptionsData> optionsDatas;
-    public DialogueEvent dialogueEvent;
+    public string eventName;
     public Dictionary<string,int> dialogueIndex=new Dictionary<string,int>();
 
     private void Update()
@@ -25,6 +25,8 @@ public class DialogueManager : Singleton<DialogueManager>,ISaveable
         {
             if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return)||ifIntervaled)
             {
+                if(!controller.activeInHierarchy)
+                    EventHandler.CallShowDialogueEvent(string.Empty, DialogueData.TextDia.Text1, 0f, optionsDatas);
                 DialogueController dialogueController=controller.GetComponent<DialogueController>();
                 if(!ifAllTalked)
                 {

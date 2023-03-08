@@ -15,13 +15,22 @@ public class DialogueUI : MonoBehaviour
     private Text currentText;
     private float currentInterval;
     [SerializeField]private List<OptionsData> currentOptionDatas;
-    private bool ifOption;
+    [SerializeField]private bool ifOption;
 
     private void ShowDialogue(string dialogue, DialogueData.TextDia text, float interval,List<OptionsData> optionsDatas)
     {
         Debug.Log(optionsDatas.Count);
         currentDialogue = dialogue;
         currentInterval = interval;
+        if(optionPanel.transform.childCount!=0)
+        {
+            foreach (ObjectPool options in optionPanel.transform.GetComponentsInChildren<ObjectPool>(true))
+            {
+                options.Reset();
+            }
+        }
+        if(optionsDatas.Count!=0)
+            ifOption=true;
         optionPanel.SetActive(false);
         if (fade != null)
         {
@@ -36,7 +45,6 @@ public class DialogueUI : MonoBehaviour
         else
         {
             panel.SetActive(false); DialogueManager.Instance.ifTalking = false;
-            ifOption = true;
             if (interval != 0)
                 DialogueManager.Instance.ifTalking = true;
             else
@@ -84,13 +92,11 @@ public class DialogueUI : MonoBehaviour
                     ifcolor = true;
                     outdialogue = outdialogue.Substring(0, outdialogue.Length - 1 - 6);
                 }
-                Debug.Log(outdialogue);
                 if (outdialogue.Substring(outdialogue.Length - 1 - 7, 1 + 7) == "</color>")
                 {
                     ifsize = true;
                     outdialogue = outdialogue.Substring(0, outdialogue.Length - 1 - 7);
                 }
-                Debug.Log(outdialogue);
             }
             catch
             { }
@@ -107,22 +113,20 @@ public class DialogueUI : MonoBehaviour
                 if (!ifture)
                 {
                     outdialogue += dialogue.Substring(outdialogue.Length, 2);
-                    Debug.Log(outdialogue);
                     try
                     {
                         while (!checkString(dialogue.Substring(outdialogue.Length + 1, 1)))
                         {
                             outdialogue += dialogue.Substring(outdialogue.Length, 1);
-                            Debug.Log(outdialogue);
                         }
                     }
                     catch
                     { }
                     outdialogue += dialogue.Substring(outdialogue.Length, 1);
                     if (outdialogue.Contains("<color"))
-                        outdialogue += "</color>"; Debug.Log(outdialogue);
+                        outdialogue += "</color>";
                     if (outdialogue.Contains("<size"))
-                        outdialogue += "</size>"; Debug.Log(outdialogue);
+                        outdialogue += "</size>";
                 }
                 else
                 {
@@ -134,21 +138,17 @@ public class DialogueUI : MonoBehaviour
                 try
                 {
                     outdialogue += dialogue.Substring(outdialogue.Length, 1);
-                    Debug.Log(outdialogue);
-                    Debug.Log(dialogue.Substring(outdialogue.Length, 1));
                     if (dialogue.Substring(outdialogue.Length, 1) == "/")
                     {
                         outdialogue = outdialogue.Substring(0, outdialogue.Length - 1);
-                        Debug.Log(outdialogue);
                     }
                 }
                 catch { }
-                Debug.Log(outdialogue);
             }
             if (ifcolor)
-                outdialogue += "</color>"; Debug.Log(outdialogue); ifcolor = false;
+                outdialogue += "</color>"; ifcolor = false;
             if (ifsize)
-                outdialogue += "</size>"; Debug.Log(outdialogue); ifsize = false;
+                outdialogue += "</size>"; ifsize = false;
             text.text = outdialogue;
             bool ifEllipsis;
             bool ifMid;
@@ -177,6 +177,7 @@ public class DialogueUI : MonoBehaviour
         if(currentOptionDatas.Count!=0&&ifOption)
         {
             yield return new WaitForSecondsRealtime(0.5f);
+            panel.gameObject.SetActive(false);
             ifOption = false;
             optionPanel.SetActive(true);
             foreach (var data in currentOptionDatas)

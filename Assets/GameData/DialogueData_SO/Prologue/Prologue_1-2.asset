@@ -17,10 +17,10 @@ MonoBehaviour:
     who: 
     tachie: {fileID: 0}
     text: 0
-    interval: 0
-    dialogueEvent: 0
+    interval: 2
     optionsDatas:
-    - option: 
+    - option: "\u7741\u5F00"
       nextDialogue: {fileID: 0}
-    - option: 
+    - option: "\u2026\u2026"
       nextDialogue: {fileID: 0}
+    eventName: 

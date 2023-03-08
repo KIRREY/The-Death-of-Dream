@@ -17,8 +17,8 @@ public class DialogueData
     public enum TextDia { Text1, Text2 };
     public TextDia text;
     public float interval;
-    public DialogueEvent dialogueEvent;
     public List<OptionsData> optionsDatas;
+    [Tooltip("输入添加的脚本的名字")]public string eventName;
 }
 [System.Serializable]
 public class OptionsData

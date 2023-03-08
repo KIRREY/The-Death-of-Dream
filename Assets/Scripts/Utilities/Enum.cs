@@ -44,10 +44,3 @@ public enum NightwareLevel
     Lv2,
     Lv3,
 }
-
-public enum DialogueEvent
-{
-    None,
-    Teleport,
-    DialogueEvent,
-}

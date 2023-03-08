@@ -13,21 +13,28 @@ MonoBehaviour:
   m_Name: Prologue_1-1
   m_EditorClassIdentifier: 
   dialogueList:
+  - dialogue: 
+    who: 
+    tachie: {fileID: 0}
+    text: 0
+    interval: 0.2
+    optionsDatas: []
+    eventName: Prologue_1_1
   - dialogue: "\uFF1F\uFF1F\u7741\u5F00\u4E86\u53CC\u773C\uFF0C\u8840\u8272\u5939\u6742\u4E9B\u6A21\u7CCA\u7684\u9ED1\u5F71\u5145\u65A5\u4E86\u6574\u7247\u4E16\u754C\u3002"
     who: 
     tachie: {fileID: 0}
     text: 0
     interval: 0
-    dialogueEvent: 0
     optionsDatas: []
+    eventName: 
   - dialogue: "<size=100><color=red>\u6709\u4E9B\u810F\u4E1C\u897F\uFF0C\u64E6\u4E86\u5427</color></size>"
     who: 
     tachie: {fileID: 0}
     text: 0
     interval: 0
-    dialogueEvent: 0
     optionsDatas:
-    - option: 
+    - option: "\u64E6"
       nextDialogue: {fileID: 0}
-    - option: 
+    - option: "\u2026\u2026"
       nextDialogue: {fileID: 0}
+    eventName: 

@@ -11,8 +11,13 @@ public class ObjectPool : MonoBehaviour
         this.gameObject.transform.SetParent(parent);
     }
 
-    private void OnDisable()
+    public void Reset()
     {
-        this.gameObject.transform.SetParent(origin);
+        try
+        {
+            this.gameObject.transform.SetParent(origin);
+        }
+        catch { }
+        this.gameObject.SetActive(false);
     }
 }
