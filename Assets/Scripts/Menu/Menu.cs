@@ -19,8 +19,8 @@ public class Menu : Singleton<Menu>
     {
         GameManager.Instance.MenuReset();
         SaveLoadManager.Instance.Load(index);
-        Time.timeScale = 1;
         this.gameObject.SetActive(false);
+        EventHandler.CallGameStateChangerEvent(GameState.GamePlay);
     }
 
     public void Save(int index)
@@ -31,8 +31,8 @@ public class Menu : Singleton<Menu>
         GameManager.Instance.MenuReset();
         EventHandler.CallBeforeSceneChangeEvent();
         SaveLoadManager.Instance.Save(index);
-        Time.timeScale = 1;
         this.gameObject.SetActive(false);
+        EventHandler.CallGameStateChangerEvent(GameState.GamePlay);
     }
 
     public void StartGameWeek()

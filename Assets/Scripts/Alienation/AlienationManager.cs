@@ -75,10 +75,11 @@ public class AlienationManager : Singleton<AlienationManager>,ISaveable
         if (!ifAlienation||(int)alienationLevel<(int)AlienationLevel.alienationLevel)
         {
             EventHandler.CallGameStateChangerEvent(GameState.Pause);
-            StartCoroutine(PlayerMove(AlienationLevel));
+            moveCoroutine= StartCoroutine(PlayerMove(AlienationLevel));
         }
     }
 
+    public Coroutine moveCoroutine;
     public float distanceF;
     public float speed;
     private IEnumerator PlayerMove(Alienation AlienationLevel)
@@ -122,6 +123,7 @@ public class AlienationManager : Singleton<AlienationManager>,ISaveable
         }
         EventHandler.CallGameStateChangerEvent(GameState.GamePlay);
         AlienationLevel.OnAlienationChangeEvent();
+        moveCoroutine = null;
     }
 
     public void AlienationAction()
@@ -131,7 +133,7 @@ public class AlienationManager : Singleton<AlienationManager>,ISaveable
         ifAlienation = true;
         switch (alienationLevel)
         {
-            case AlienationLevel.None: break;
+            case AlienationLevel.None: ifAlienation = false; break;
             case AlienationLevel.Eye: GameManager.Instance.Timer(60); EyeAction(); break;
             case AlienationLevel.Leg: GameManager.Instance.Timer(50); LegAction(); break;
             case AlienationLevel.Hand:GameManager.Instance.Timer(40); HandAction(); break;
@@ -249,11 +251,13 @@ public class AlienationManager : Singleton<AlienationManager>,ISaveable
     {
         GameSaveData saveData = new GameSaveData();
         saveData.AlienationLevel = alienationLevel;
+        saveData.currentAlienation = current;
         return saveData;
     }
 
     public void RestoreGameData(GameSaveData saveData)
     {
         alienationLevel=saveData.AlienationLevel;
+        current=saveData.currentAlienation;
     }
 }

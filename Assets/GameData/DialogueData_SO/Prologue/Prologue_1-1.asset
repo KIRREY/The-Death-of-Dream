@@ -34,7 +34,7 @@ MonoBehaviour:
     interval: 0
     optionsDatas:
     - option: "\u64E6"
-      nextDialogue: {fileID: 0}
+      nextDialogue: {fileID: 11400000, guid: 068d3f736631ecb42a93f29981482383, type: 2}
     - option: "\u2026\u2026"
       nextDialogue: {fileID: 0}
     eventName: 

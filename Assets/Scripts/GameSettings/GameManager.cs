@@ -4,13 +4,14 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
-public class GameManager : Singleton<GameManager>,ISaveable
+public class GameManager : Singleton<GameManager>, ISaveable
 {
     public float gameTime;
     public GameObject timer;
     public GameObject menu;
     public Light2D globalLight;
     public RectTransform nightwareimage;
+    public GameState gameState;
 
     private void Start()
     {
@@ -23,17 +24,32 @@ public class GameManager : Singleton<GameManager>,ISaveable
         TimeMgr.SetCurTime();
     }
 
+    private void OnEnable()
+    {
+        EventHandler.GameStateChangedEvent += OnGameStateChangedEvent;
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.GameStateChangedEvent -= OnGameStateChangedEvent;
+    }
+
+    private void OnGameStateChangedEvent(GameState obj)
+    {
+        gameState = obj;
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.X) && !DialogueManager.Instance.ifTalking && !DialogueUI.Instance.ifOption && AlienationManager.Instance.moveCoroutine == null)
         {
             if (menu.activeInHierarchy)
             {
-                Time.timeScale = 1;
+                EventHandler.CallGameStateChangerEvent(GameState.GamePlay);
                 MenuReset();
             }
             else
-                Time.timeScale=0;
+                EventHandler.CallGameStateChangerEvent(GameState.Pause);
             menu.SetActive(!menu.activeInHierarchy);
         }
     }
@@ -54,7 +70,7 @@ public class GameManager : Singleton<GameManager>,ISaveable
             StopCoroutine(timeReset);
             timeReset = null;
         }
-        timeReset= StartCoroutine(TimerReset(time));
+        timeReset = StartCoroutine(TimerReset(time));
     }
 
     private IEnumerator TimerReset(float time)
@@ -62,8 +78,11 @@ public class GameManager : Singleton<GameManager>,ISaveable
         Text text = timer.GetComponent<Text>();
         while (time > float.Epsilon)
         {
-            text.text = ((int)time).ToString();
-            time--;
+            if (gameState == GameState.GamePlay)
+            {
+                text.text = ((int)time).ToString();
+                time--;
+            }
             yield return new WaitForSecondsRealtime(1);
         }
         timer.SetActive(false);
@@ -78,11 +97,13 @@ public class GameManager : Singleton<GameManager>,ISaveable
         savedata.globalLightColorR = globalLight.color.r;
         savedata.globalLightColorG = globalLight.color.g;
         savedata.globalLightColorB = globalLight.color.b;
+        savedata.gameTime = gameTime;
         return savedata;
     }
 
     public void RestoreGameData(GameSaveData saveData)
     {
-        globalLight.color=new Color(saveData.globalLightColorR,saveData.globalLightColorG,saveData.globalLightColorB,saveData.globalLightColorA);
+        globalLight.color = new Color(saveData.globalLightColorR, saveData.globalLightColorG, saveData.globalLightColorB, saveData.globalLightColorA);
+        gameTime = saveData.gameTime;
     }
 }

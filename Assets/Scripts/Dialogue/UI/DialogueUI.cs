@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueUI : MonoBehaviour
+public class DialogueUI : Singleton<DialogueUI>
 {
     public GameObject panel;
     public Text dialogueText1;
@@ -15,7 +15,7 @@ public class DialogueUI : MonoBehaviour
     private Text currentText;
     private float currentInterval;
     [SerializeField]private List<OptionsData> currentOptionDatas;
-    [SerializeField]private bool ifOption;
+    public bool ifOption;
 
     private void ShowDialogue(string dialogue, DialogueData.TextDia text, float interval,List<OptionsData> optionsDatas)
     {
@@ -176,7 +176,11 @@ public class DialogueUI : MonoBehaviour
 
         if(currentOptionDatas.Count!=0&&ifOption)
         {
-            yield return new WaitForSecondsRealtime(0.5f);
+            while(true)
+            {
+                if (Input.GetKey(KeyCode.Return)||Input.GetKey(KeyCode.Z)) break;
+                yield return null;  
+            }
             panel.gameObject.SetActive(false);
             ifOption = false;
             optionPanel.SetActive(true);

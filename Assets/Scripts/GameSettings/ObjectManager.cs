@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.SceneManagement;
 
-public class ObjectManager : Singleton<ObjectManager>
+public class ObjectManager : Singleton<ObjectManager>,ISaveable
 {
     public Dictionary<string, bool> objectActive = new Dictionary<string, bool>();
 
@@ -56,5 +56,19 @@ public class ObjectManager : Singleton<ObjectManager>
     private void Start()
     {
         objectActive.Clear();
+        ISaveable saveable = this;
+        saveable.SaveableRegister();
+    }
+
+    public GameSaveData GenerateSaveData()
+    {
+        GameSaveData saveData = new GameSaveData();
+        saveData.objectActive = objectActive;
+        return saveData;
+    }
+
+    public void RestoreGameData(GameSaveData saveData)
+    {
+        objectActive = saveData.objectActive;
     }
 }

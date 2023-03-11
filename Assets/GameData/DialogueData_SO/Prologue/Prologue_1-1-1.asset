@@ -10,17 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c78fddc4bcc556645b7e9fa55fa7d44c, type: 3}
-  m_Name: Prologue 1
+  m_Name: Prologue_1-1-1
   m_EditorClassIdentifier: 
   dialogueList:
-  - dialogue: "<size=100><color=red>\u4E0D\u6562\u5462</color></size>"
+  - dialogue: 
     who: 
     tachie: {fileID: 0}
-    text: 1
+    text: 0
     interval: 1
-    optionsDatas:
-    - option: "\u7741\u5F00"
-      nextDialogue: {fileID: 11400000, guid: 530296ed987b0a04585e262773226186, type: 2}
-    - option: "\u2026\u2026"
-      nextDialogue: {fileID: 11400000, guid: 1e29af2f9104f56469f2627662147e97, type: 2}
-    eventName: 
+    optionsDatas: []
+    eventName: Prologue_1_1_1

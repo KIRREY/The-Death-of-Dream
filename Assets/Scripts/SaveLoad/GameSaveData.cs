@@ -14,6 +14,7 @@ public class GameSaveData
     public float globalLightColorG;
     public float globalLightColorB;
     public float globalLightColorA;
+    public float gameTime;
 
     public Dictionary<string, int> dialogueIndex = new Dictionary<string, int>();
 
@@ -22,4 +23,7 @@ public class GameSaveData
     public bool ifBrain;
 
     public AlienationLevel AlienationLevel;
+    public float currentAlienation;
+
+    public Dictionary<string, bool> objectActive = new Dictionary<string, bool>();
 }
