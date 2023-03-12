@@ -99,7 +99,6 @@ public class AlienationManager : Singleton<AlienationManager>,ISaveable
         while (true)
         {
             float distance = (playerPost - player.transform.position).magnitude;
-            Debug.Log(distance);
             time += Time.deltaTime;
             if (time > 0.5f)
             {

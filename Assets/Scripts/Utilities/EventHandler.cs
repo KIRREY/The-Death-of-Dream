@@ -75,6 +75,12 @@ public static class EventHandler
     {
         ExitChasingEvent?.Invoke(ifChaseDown);
     }
+
+    public static event Action<AnimationDatas> AnimationEvent;
+    public static void CallAnimationEvent(AnimationDatas texture2D)
+    {
+        AnimationEvent?.Invoke(texture2D);
+    }
 }
 
 

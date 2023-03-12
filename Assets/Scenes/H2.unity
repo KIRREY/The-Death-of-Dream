@@ -6794,13 +6794,13 @@ MonoBehaviour:
   dialogueEmptys:
   - {fileID: 11400000, guid: a316cba61c472ac4bb965be53ca3474f, type: 2}
   dialogueEmpty: {fileID: 11400000, guid: a316cba61c472ac4bb965be53ca3474f, type: 2}
-  dialogueAlienations:
-  - {fileID: 11400000, guid: a316cba61c472ac4bb965be53ca3474f, type: 2}
-  dialogueAlienation: {fileID: 0}
-  dialogueFinish: {fileID: 11400000, guid: a316cba61c472ac4bb965be53ca3474f, type: 2}
+  dialogueAlienations: []
+  dialogueFinish: {fileID: 0}
+  dialogueFinish_A: {fileID: 0}
   index: 0
   ifTransform: 0
   ifEmpty: 0
+  dialogueManager: {fileID: 0}
 --- !u!1001 &1382384455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6994,11 +6994,12 @@ MonoBehaviour:
   dialogueEmpty: {fileID: 11400000, guid: e476fb0089add7741a15192654f1a2ab, type: 2}
   dialogueAlienations:
   - {fileID: 11400000, guid: e476fb0089add7741a15192654f1a2ab, type: 2}
-  dialogueAlienation: {fileID: 0}
   dialogueFinish: {fileID: 11400000, guid: e476fb0089add7741a15192654f1a2ab, type: 2}
+  dialogueFinish_A: {fileID: 0}
   index: 0
   ifTransform: 0
   ifEmpty: 0
+  dialogueManager: {fileID: 0}
 --- !u!212 &1599836578
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7103,11 +7104,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6d18829999fb419429ae61134d75a6b2, type: 2}
   dialogueEmpty: {fileID: 11400000, guid: 6d18829999fb419429ae61134d75a6b2, type: 2}
   dialogueAlienations: []
-  dialogueAlienation: {fileID: 0}
   dialogueFinish: {fileID: 11400000, guid: de797b0ff6a8440449c981d994a4fe4d, type: 2}
+  dialogueFinish_A: {fileID: 0}
   index: 0
   ifTransform: 0
   ifEmpty: 0
+  dialogueManager: {fileID: 0}
 --- !u!58 &1753293278
 CircleCollider2D:
   m_ObjectHideFlags: 0
