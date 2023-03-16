@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Teleport : MonoBehaviour
+[RequireComponent(typeof(DialogueController))]
+public class Teleport : Interactive
 {
     [SceneName] public string sceneFrom;
     [SceneName] public string sceneToGO;
@@ -16,6 +17,21 @@ public class Teleport : MonoBehaviour
             playerPos = transform.GetChild(0);
         }
         catch { }
+    }
+
+    protected override void OnAction()
+    {
+        TeleportToScene();
+    }
+
+    public override void EmptyAction()
+    {
+        if (requireItem == ItemName.None)
+        {
+            TeleportToScene(); return;
+        }
+        Debug.Log("showempty");
+        GetComponent<DialogueController>().ShowDialogueEmpty();
     }
 
     public void TeleportToScene()

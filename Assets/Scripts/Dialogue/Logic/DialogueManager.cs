@@ -25,7 +25,7 @@ public class DialogueManager : Singleton<DialogueManager>,ISaveable
         {
             if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return)||ifIntervaled)
             {
-                if(!controller.activeInHierarchy)
+                if (!controller.activeInHierarchy)
                     EventHandler.CallShowDialogueEvent(string.Empty, DialogueData.TextDia.Text1, 0f, optionsDatas);
                 DialogueController dialogueController=controller.GetComponent<DialogueController>();
                 if(!ifAllTalked)

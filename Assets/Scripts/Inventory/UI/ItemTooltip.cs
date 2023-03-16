@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class ItemTooltip : MonoBehaviour
 {
-    public Text itemNameText;
+    public Text itemDetiles;
 
     public void UpdateItemName(ItemName itemName)
     {
-        itemNameText.text = itemName switch
+        itemDetiles.text = itemName switch
         {
             _ => ""
         };

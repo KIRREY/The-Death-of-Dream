@@ -17,7 +17,8 @@ public enum CharacterType
 
 public enum ItemName
 {
-
+    None,
+    HomeKey,
 }
 
 public enum Direction

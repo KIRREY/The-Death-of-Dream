@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c78fddc4bcc556645b7e9fa55fa7d44c, type: 3}
+  m_Name: AnRing
+  m_EditorClassIdentifier: 
+  dialogueList:
+  - dialogue: "\u561F\u561F\u561F\u2026\u2026"
+    who: 
+    tachie: {fileID: 0}
+    text: 1
+    interval: 0.5
+    optionsDatas: []
+    eventName: 
+  - dialogue: "\u2026\u2026\u662F\u5B89\u7684\u7535\u8BDD"
+    who: "\u4F59\u6607"
+    tachie: {fileID: 21300000, guid: d7c3f6a54db9b82488ca007ad608ec66, type: 3}
+    text: 0
+    interval: 0.5
+    optionsDatas:
+    - option: "\u63A5\u542C"
+      nextDialogue: {fileID: 11400000, guid: 9a0a3baf3714ea242984a5efb3539360, type: 2}
+    - option: "\u6302\u65AD"
+      nextDialogue: {fileID: 11400000, guid: 4ed114cfa25508d419c9d7a5c1cee660, type: 2}
+    eventName: 

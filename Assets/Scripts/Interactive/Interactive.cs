@@ -14,6 +14,11 @@ public class Interactive : MonoBehaviour
             isDone = true;
             OnAction();
         }
+        else
+        {
+            if(requireItem==ItemName.None)
+                EmptyAction();
+        }
     }
 
     /// <summary>

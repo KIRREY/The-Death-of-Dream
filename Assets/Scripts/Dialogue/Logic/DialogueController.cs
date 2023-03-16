@@ -19,7 +19,7 @@ public class DialogueController : MonoBehaviour
     private Stack<DialogueData> dialogueFinishStack;
     public DialogueManager dialogueManager;
 
-    private bool isTalking;
+    public bool isTalking;
 
     public void FillDialogueStack()
     {
@@ -45,7 +45,14 @@ public class DialogueController : MonoBehaviour
     public void ShowDialogueEmpty()
     {
         if (!isTalking)
+        {
+            if (!ifEmpty)
+            {
+                ShowDialogueFinish();
+                return;
+            }
             StartCoroutine(DialogueRoutine(dialogueEmptyStack));
+        }
     }
 
     public void ShowDialogueFinish()
@@ -62,8 +69,9 @@ public class DialogueController : MonoBehaviour
         isTalking = true;
         if (data.TryPop(out var result))
         {
-            if(dialogueManager.eventName!=null)
+            if(result.dialogue==string.Empty)
             {
+                dialogueManager.eventName = result.eventName;
                 GetEvent();
             }
             EventHandler.CallShowDialogueEvent(result.dialogue, result.text, result.interval, result.optionsDatas);
@@ -82,6 +90,7 @@ public class DialogueController : MonoBehaviour
         }
         else
         {
+            Debug.Log("showemptynow");
             EventHandler.CallShowDialogueEvent(string.Empty, DialogueData.TextDia.Text1, 0f, new List<OptionsData>());
             GetEvent();
             if (index < (dialogueEmptys.Length - 1))

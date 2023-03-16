@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c78fddc4bcc556645b7e9fa55fa7d44c, type: 3}
+  m_Name: Chapter1_1
+  m_EditorClassIdentifier: 
+  dialogueList:
+  - dialogue: 
+    who: 
+    tachie: {fileID: 0}
+    text: 1
+    interval: 1
+    optionsDatas: []
+    eventName: 
+  - dialogue: "\u6302\u5760\u5417\u2026\u2026\u7236\u4EB2\u4E3A\u4F55\u521A\u521A\u82CF\u9192\u5C31\u8BA9\u6211\u6765\u53D6"
+    who: "\u4F59\u6607"
+    tachie: {fileID: 21300000, guid: d7c3f6a54db9b82488ca007ad608ec66, type: 3}
+    text: 0
+    interval: 0.1
+    optionsDatas: []
+    eventName: 
+  - dialogue: "tips\uFF1A\u6309\u201CB\u201D\u952E\u6253\u5F00\u80CC\u5305\u88C5\u5907\u94A5\u5319\u540E\uFF0C\u6309\u201CZ\u201D\u952E\u6216\u8005\u201CReturn\u201C\u952E\u4E0E\u95E8\u4EA4\u4E92"
+    who: 
+    tachie: {fileID: 0}
+    text: 1
+    interval: 0.5
+    optionsDatas: []
+    eventName: 

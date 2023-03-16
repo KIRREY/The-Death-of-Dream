@@ -31,12 +31,14 @@ public class Player : Character
     public GameObject flashlight;
     private Animator animator;
     new public Rigidbody2D rigidbody2D;
+    public InventoryManager inventoryManager;
 
     private void Awake()
     {
         originalspeed = speed;
         rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        inventoryManager=InventoryManager.Instance;
     }
 
     private void Update()
@@ -172,13 +174,20 @@ public class Player : Character
         if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return))
         {
             RaycastHit2D hit = Physics2D.Raycast(rigidbody2D.position, direction, distance, LayerMask.GetMask("Default"));
-            if (hit.collider != null && hit.collider.gameObject.tag == "Interactive")
+            if (hit.collider != null && hit.collider.gameObject.CompareTag("Interactive"))
             {
                 var interactive = hit.collider.gameObject.GetComponent<Interactive>();
-                if (holdItem)
-                    interactive?.CheckItem(currentItem);
+                Debug.Log(hit.collider.gameObject.name);
+                if (inventoryManager.holdItem)
+                {
+                    Debug.Log("check");
+                    interactive?.CheckItem(inventoryManager.currentItem);
+                }
                 else
+                {
+                    Debug.Log("emptyaction");
                     interactive?.EmptyAction();
+                }
             }
         }
     }

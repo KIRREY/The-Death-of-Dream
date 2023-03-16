@@ -6,11 +6,6 @@ using UnityEngine;
 public class ItemDataList_SO : ScriptableObject
 {
     public List<ItemDetails> itemDetailsList;
-
-    public ItemDetails GetItemDetails(ItemName itemName)
-    {
-        return itemDetailsList.Find(i =>i.itemName ==itemName);
-    }
 }
 
 [System.Serializable]
@@ -18,4 +13,6 @@ public class ItemDetails
 {
     public ItemName itemName;
     public Sprite itemSprite;
+    [TextArea]
+    public string itemText;
 }

@@ -36,6 +36,7 @@ public class DialogueUIOptions : Singleton<DialogueUIOptions>
     IEnumerator SelectOptions()
     {
         Fade(index);
+        EventHandler.CallGameStateChangerEvent(GameState.Pause);
         while (true)
         {
             max = OptionsPanel.transform.childCount;
@@ -61,6 +62,7 @@ public class DialogueUIOptions : Singleton<DialogueUIOptions>
     {
         DialogueController nullController = optionNull.GetComponent<DialogueController>();
         nullController.dialogueEmpty=dialogueController.dialogueEmpty;
+        nullController.ifEmpty = true;
         nullController.FillDialogueStack();
     }
 

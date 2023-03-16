@@ -81,6 +81,18 @@ public static class EventHandler
     {
         AnimationEvent?.Invoke(texture2D);
     }
+
+    public static event Action OpenInventoryEvent;
+    public static void CallOpenInventoryEvent()
+    {
+        OpenInventoryEvent?.Invoke();
+    }
+
+    public static event Action CloseInventoryEvent;
+    public static void CallCloseInventoryEvent()
+    {
+        CloseInventoryEvent?.Invoke();
+    }
 }
 
 

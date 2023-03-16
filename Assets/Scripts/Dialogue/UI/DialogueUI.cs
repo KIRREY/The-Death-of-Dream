@@ -45,7 +45,7 @@ public class DialogueUI : Singleton<DialogueUI>
         else
         {
             panel.SetActive(false); DialogueManager.Instance.ifTalking = false;
-            if (interval != 0)
+            if (interval != 0 )
                 DialogueManager.Instance.ifTalking = true;
             else
                 EventHandler.CallGameStateChangerEvent(GameState.GamePlay);
@@ -89,12 +89,12 @@ public class DialogueUI : Singleton<DialogueUI>
             {
                 if (outdialogue.Substring(outdialogue.Length - 1 - 6, 1 + 6) == "</size>")
                 {
-                    ifcolor = true;
+                    ifsize = true;
                     outdialogue = outdialogue.Substring(0, outdialogue.Length - 1 - 6);
                 }
                 if (outdialogue.Substring(outdialogue.Length - 1 - 7, 1 + 7) == "</color>")
                 {
-                    ifsize = true;
+                    ifcolor = true;
                     outdialogue = outdialogue.Substring(0, outdialogue.Length - 1 - 7);
                 }
             }

@@ -10,9 +10,13 @@ public class Prologue_1_1_1 : DialogueEvent
     {
         foreach(var obj in Resources.FindObjectsOfTypeAll<RawImage>())
         {
-            if (obj.gameObject.name == "RawImageInPrologue") 
-                obj.gameObject.SetActive(true);break;
+            if (obj.gameObject.name == "RawImageInPrologue")
+            {
+                Debug.Log("find");
+                obj.gameObject.SetActive(true); break;
+            }
         }
+        Debug.Log("over");
         Destroy(this.gameObject.GetComponent<DialogueEvent>());
     }
 }

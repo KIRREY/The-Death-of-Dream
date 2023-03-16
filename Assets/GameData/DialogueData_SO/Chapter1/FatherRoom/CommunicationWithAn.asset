@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c78fddc4bcc556645b7e9fa55fa7d44c, type: 3}
+  m_Name: CommunicationWithAn
+  m_EditorClassIdentifier: 
+  dialogueList:
+  - dialogue: "\u2026\u2026"
+    who: 
+    tachie: {fileID: 0}
+    text: 0
+    interval: 0
+    optionsDatas: []
+    eventName: 
+  - dialogue: "\u627E\u5230\u4E86\u5417"
+    who: "\u5B89"
+    tachie: {fileID: 21300000, guid: c80b64c60e3d6144db50305d3a919c5b, type: 3}
+    text: 0
+    interval: 0.5
+    optionsDatas: []
+    eventName: 
+  - dialogue: "\u2026\u2026\u6CA1\u6709\uFF0C\u5728\u4ED6\u7684\u623F\u95F4\u91CC\u6CA1\u6709\u627E\u5230"
+    who: "\u4F59\u6607"
+    tachie: {fileID: 21300000, guid: d7c3f6a54db9b82488ca007ad608ec66, type: 3}
+    text: 0
+    interval: 0.5
+    optionsDatas: []
+    eventName: 
+  - dialogue: "\u4ED6\u8BF4\u5982\u679C\u4F60\u5728\u4ED6\u7684\u623F\u95F4\u627E\u4E0D\u5230\uFF0C\u53EF\u4EE5\u53BB\u4F60\u623F\u95F4\u770B\u770B"
+    who: "\u5B89"
+    tachie: {fileID: 21300000, guid: c80b64c60e3d6144db50305d3a919c5b, type: 3}
+    text: 0
+    interval: 0.5
+    optionsDatas: []
+    eventName: 
+  - dialogue: "\u4EC0\u2026\u2026"
+    who: "\u4F59\u6607"
+    tachie: {fileID: 21300000, guid: d7c3f6a54db9b82488ca007ad608ec66, type: 3}
+    text: 0
+    interval: 0.5
+    optionsDatas: []
+    eventName: 
+  - dialogue: "\u561F\u2026\u2026\u561F\u2026\u2026"
+    who: 
+    tachie: {fileID: 0}
+    text: 1
+    interval: 0.5
+    optionsDatas: []
+    eventName: 
+  - dialogue: "\u5B89...\u597D\u5947\u602A"
+    who: "\u4F59\u6607"
+    tachie: {fileID: 21300000, guid: d7c3f6a54db9b82488ca007ad608ec66, type: 3}
+    text: 0
+    interval: 0.5
+    optionsDatas: []
+    eventName: 
+  - dialogue: "\u2026\u2026\u5148\u53BB\u81EA\u5DF1\u623F\u95F4\u5427"
+    who: "\u4F59\u6607"
+    tachie: {fileID: 21300000, guid: d7c3f6a54db9b82488ca007ad608ec66, type: 3}
+    text: 0
+    interval: 0.5
+    optionsDatas: []
+    eventName: 

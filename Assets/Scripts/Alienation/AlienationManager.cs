@@ -133,10 +133,10 @@ public class AlienationManager : Singleton<AlienationManager>,ISaveable
         switch (alienationLevel)
         {
             case AlienationLevel.None: ifAlienation = false; break;
-            case AlienationLevel.Eye: GameManager.Instance.Timer(60); EyeAction(); break;
-            case AlienationLevel.Leg: GameManager.Instance.Timer(50); LegAction(); break;
-            case AlienationLevel.Hand:GameManager.Instance.Timer(40); HandAction(); break;
-            case AlienationLevel.Brain:GameManager.Instance.Timer(30); BrainAction(); break;
+            case AlienationLevel.Eye: GameManager.Instance.Timer(10); EyeAction(); break;
+            case AlienationLevel.Leg: GameManager.Instance.Timer(10); LegAction(); break;
+            case AlienationLevel.Hand:GameManager.Instance.Timer(10); HandAction(); break;
+            case AlienationLevel.Brain:GameManager.Instance.Timer(10); BrainAction(); break;
             case AlienationLevel.All:GameManager.Instance.Timer(20); AllAction(); break;
         }
     }

@@ -31,7 +31,7 @@ MonoBehaviour:
     who: 
     tachie: {fileID: 0}
     text: 0
-    interval: 0
+    interval: 0.2
     optionsDatas:
     - option: "\u64E6"
       nextDialogue: {fileID: 11400000, guid: 068d3f736631ecb42a93f29981482383, type: 2}
